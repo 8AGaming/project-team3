@@ -7,15 +7,16 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useNavigate } from "react-router-dom";
 
 const pages = ["Categories", "Products", "Pricing", "Blog"];
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-const Header = () => {
-  const navigate = useNavigate();
+const HeaderLoggedIn = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -25,6 +26,9 @@ const Header = () => {
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
@@ -44,9 +48,7 @@ const Header = () => {
             variant="h6"
             noWrap
             component="a"
-            onClick={() => {
-              navigate("/home");
-            }}
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -118,29 +120,21 @@ const Header = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                onClick={() => {
-                  handleCloseNavMenu(),
-                    page === "Categories" && navigate("/categories");
-                }}
+                href={(page === "Categories" && "/categories") as string}
                 key={page}
+                onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
               </Button>
             ))}
           </Box>
-          <Box>
-            {/* כפתור הרשמה */}
-            <Button
-              color="inherit"
-              onClick={() => {
-                navigate("/signin");
-              }}
-            >
-              Sign In
-            </Button>
-          </Box>
           <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -156,7 +150,13 @@ const Header = () => {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-            ></Menu>
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
         </Toolbar>
       </Container>
@@ -164,4 +164,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderLoggedIn;

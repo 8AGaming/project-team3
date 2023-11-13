@@ -1,4 +1,3 @@
-import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,35 +11,27 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { setPageName } from "../pages/pageNameSlice";
-// import { useForm, FieldValues } from "react-hook-form";
-// import { ErrorMessage } from "@hookform/error-message";
 
-function Copyright() {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      sx={{ mt: 5 }}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Team 3
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import {
+  emailValidet,
+  nameValidet,
+  passwordValidet,
+} from "../helpers/validation";
+import { FieldValues, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { Copyright } from "./Copyright";
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export const SignUp = () => {
-  const dispatch = useAppDispatch();
-  const submitHandle = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({ mode: "onChange" });
+
+  const onSubmit = (event: FieldValues) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -70,29 +61,34 @@ export const SignUp = () => {
           <Box
             component="form"
             noValidate
-            onSubmit={submitHandle}
+            onSubmit={handleSubmit(onSubmit)}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
                   required
                   fullWidth
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  {...register("firstName", nameValidet)}
+                  helperText={errors.firstName?.message?.toString()}
+                  error={errors.firstName ? true : false}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
+                  autoFocus
                   id="lastName"
                   label="Last Name"
-                  name="lastName"
                   autoComplete="family-name"
+                  {...register("lastName", nameValidet)}
+                  helperText={errors.lastName?.message?.toString()}
+                  error={errors.lastName ? true : false}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -101,19 +97,23 @@ export const SignUp = () => {
                   fullWidth
                   id="email"
                   label="Email Address"
-                  name="email"
                   autoComplete="email"
+                  {...register("email", emailValidet)}
+                  helperText={errors.email?.message?.toString()}
+                  error={errors.email ? true : false}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="password"
                   label="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  {...register("password", passwordValidet)}
+                  helperText={errors.password?.message?.toString()}
+                  error={errors.password ? true : false}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -125,21 +125,23 @@ export const SignUp = () => {
                 />
               </Grid>
             </Grid>
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!isValid}
             >
               Sign Up
             </Button>
+
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link
-                  href="#"
                   variant="body2"
                   onClick={() => {
-                    dispatch(setPageName("signin"));
+                    navigate("/signin");
                   }}
                 >
                   Already have an account? Sign in
