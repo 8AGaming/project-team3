@@ -11,10 +11,6 @@ export const ProductCard: FC<ProductCardInterface> = ({
   title,
   description,
   price,
-  rating,
-  stock,
-  brand,
-  category,
   thumbnail,
 }) => {
   return (

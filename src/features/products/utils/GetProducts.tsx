@@ -2,7 +2,7 @@
 
 import axios from "../helpers/axios";
 import { setProducts } from "../productsSlice";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch } from "../../../store/hooks";
 import { useEffect } from "react";
 
 export const GetProducts = () => {

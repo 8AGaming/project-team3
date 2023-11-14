@@ -2,7 +2,7 @@
 
 import axios from "../helpers/axios";
 import { setCategories } from "../categoriesSlice";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch } from "../../../store/hooks";
 import { useEffect } from "react";
 
 export const GetCategories = () => {

@@ -1,6 +1,8 @@
 import { Button } from "@mui/material";
+import { FC } from "react";
+import { SignInUpButtonInterface } from "../interfaces/SignInUpButtonInterface";
 
-const SignInUpButton = (text: string) => {
+const SignInUpButton: FC<SignInUpButtonInterface> = ({ text, isValid }) => {
   return (
     <>
       <Button

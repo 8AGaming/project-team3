@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import pageNameSlice from "../products/pages/pageNameSlice";
-import productsSlice from "../products/productsSlice";
-import categoriesSlice from "../categories/categoriesSlice";
-import usersSlice from "../users/usersSlice";
+import pageNameSlice from "../features/products/pages/pageNameSlice";
+import productsSlice from "../features/products/productsSlice";
+import categoriesSlice from "../features/categories/categoriesSlice";
+import usersSlice from "../features/users/usersSlice";
 
 export const store = configureStore({
   reducer: {

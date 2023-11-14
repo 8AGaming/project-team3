@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,17 +10,14 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const pages = ["Categories", "Products", "Pricing", "Blog"];
 
 const Header = () => {
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -95,6 +91,7 @@ const Header = () => {
                   onClick={() => {
                     handleCloseNavMenu(),
                       page === "Categories" && navigate("/categories");
+                    page === "Products" && navigate("/products");
                   }}
                 >
                   <Typography textAlign="center">{page}</Typography>
@@ -129,6 +126,7 @@ const Header = () => {
                 onClick={() => {
                   handleCloseNavMenu(),
                     page === "Categories" && navigate("/categories");
+                  page === "Products" && navigate("/products");
                 }}
                 key={page}
                 sx={{ my: 2, color: "white", display: "block" }}

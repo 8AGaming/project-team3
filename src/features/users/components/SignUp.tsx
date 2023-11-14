@@ -1,45 +1,33 @@
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import {
   emailValidet,
   nameValidet,
   passwordValidet,
 } from "../../products/helpers/validation";
 import { FieldValues, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { Copyright } from "../../layout/Copyright";
-
+import SignInUpLink from "./SignInUpLink";
+import SignInUpButton from "./SignInUpButton";
+import PasswordInput from "./PasswordInput";
+import EmailInput from "./EmailInput";
 const defaultTheme = createTheme();
-
 export const SignUp = () => {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
-
   const onSubmit = (event: FieldValues) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -91,60 +79,19 @@ export const SignUp = () => {
                   error={errors.lastName ? true : false}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  autoComplete="email"
-                  {...register("email", emailValidet)}
-                  helperText={errors.email?.message?.toString()}
-                  error={errors.email ? true : false}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  {...register("password", passwordValidet)}
-                  helperText={errors.password?.message?.toString()}
-                  error={errors.password ? true : false}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
+              <EmailInput
+                register={register}
+                errors={errors}
+                emailValidet={emailValidet}
+              />
+              <PasswordInput
+                register={register}
+                errors={errors}
+                passwordValidet={passwordValidet}
+              />
             </Grid>
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              disabled={!isValid}
-            >
-              Sign Up
-            </Button>
-            <Grid item>
-              <Link
-                variant="body2"
-                onClick={() => {
-                  navigate("/signin");
-                }}
-              >
-                Already have an account? Sign in
-              </Link>
-            </Grid>
+            <SignInUpButton text="Sign Up" isValid={isValid} />
+            <SignInUpLink text="signin" />
           </Box>
         </Box>
         <Copyright />

@@ -6,25 +6,19 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import React from "react";
-
 const ProductDetails = () => {
   const [quantity, setQuantity] = React.useState(1);
-
   const handleQuantityChange = (event: {
     target: { value: React.SetStateAction<number> };
   }) => {
     setQuantity(event.target.value);
   };
-
-  // ניהול כפתור הוסף לסל
   const handleAddToBasketClick = () => {
     console.log(`Added ${quantity} item(s) to the basket`);
   };
-  //   ניהול כפתור השוואת מחירים
   const handlePriceComparisonClick = () => {
     console.log(`Added ${quantity} item(s) to the basket`);
   };
-
   return (
     <Card
       sx={{
@@ -62,8 +56,6 @@ const ProductDetails = () => {
         <Typography variant="body2" color="text.secondary">
           Battery: Built-in rechargeable lithium‑ion battery
         </Typography>
-
-        {/* אפשרויות משלוח*/}
         <Typography variant="h6" color="text.primary" sx={{ marginTop: 2 }}>
           Order Options
         </Typography>
@@ -76,8 +68,6 @@ const ProductDetails = () => {
           <MenuItem value="standard">Standard Delivery</MenuItem>
           <MenuItem value="express">Express Delivery</MenuItem>
         </TextField>
-
-        {/* כמות הזמנה */}
         <Typography variant="h6" color="text.primary" sx={{ marginTop: 2 }}>
           Quantity
         </Typography>
@@ -94,8 +84,6 @@ const ProductDetails = () => {
             </MenuItem>
           ))}
         </TextField>
-
-        {/* הוסף לסל*/}
         <Button
           variant="contained"
           onClick={handleAddToBasketClick}
@@ -108,7 +96,6 @@ const ProductDetails = () => {
         >
           Add to Basket
         </Button>
-        {/* השוואת מחיר*/}
         <Button
           variant="contained"
           onClick={handlePriceComparisonClick}
@@ -125,5 +112,4 @@ const ProductDetails = () => {
     </Card>
   );
 };
-
 export default ProductDetails;
