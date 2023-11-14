@@ -90,7 +90,13 @@ const Header = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  onClick={() => {
+                    handleCloseNavMenu(),
+                      page === "Categories" && navigate("/categories");
+                  }}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -101,7 +107,9 @@ const Header = () => {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            onClick={() => {
+              navigate("/home");
+            }}
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },

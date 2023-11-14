@@ -13,20 +13,23 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FieldValues, useForm } from "react-hook-form";
-import { emailValidet, passwordValidet } from "../helpers/validation";
-import { Copyright } from "./Copyright";
+import {
+  emailValidet,
+  passwordValidet,
+} from "../../products/helpers/validation";
+import { Copyright } from "../../layout/Copyright";
 import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
 export const SignIn = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
-  const navigate = useNavigate();
   const onSubmit = (event: FieldValues) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -97,22 +100,15 @@ export const SignIn = () => {
             >
               Sign In
             </Button>
-            <Grid container>
-              {/* אפשרות להוספת פונקצית של שיחזור סיסמה במקרה של שיכחה */}
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
+            <Grid container justifyContent="center">
               <Grid item>
-                {/* קישור לעמוד הרשמה */}
                 <Link
                   variant="body2"
                   onClick={() => {
                     navigate("/signup");
                   }}
                 >
-                  {"Don't have an account? Sign Up"}
+                  Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>

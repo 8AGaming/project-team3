@@ -16,10 +16,10 @@ import {
   emailValidet,
   nameValidet,
   passwordValidet,
-} from "../helpers/validation";
+} from "../../products/helpers/validation";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Copyright } from "./Copyright";
+import { Copyright } from "../../layout/Copyright";
 
 const defaultTheme = createTheme();
 
@@ -135,18 +135,15 @@ export const SignUp = () => {
             >
               Sign Up
             </Button>
-
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link
-                  variant="body2"
-                  onClick={() => {
-                    navigate("/signin");
-                  }}
-                >
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
+            <Grid item>
+              <Link
+                variant="body2"
+                onClick={() => {
+                  navigate("/signin");
+                }}
+              >
+                Already have an account? Sign in
+              </Link>
             </Grid>
           </Box>
         </Box>

@@ -1,16 +1,15 @@
 import { useState } from "react";
-import ProductCard from "../components/ProductCard";
-import Header from "../components/Header";
+// import ProductCard from "../components/ProductCard";
+import Header from "../../layout/Header";
+import { useAppSelector } from "../../store/hooks";
+import { store } from "../../store/store";
+import { ProductCard } from "../components/ProductCard";
 // import "./HomePage.css";
-import ProductDetails from "../components/ProductDetails";
+// import ProductDetails from "../components/ProductDetails";
 
 const HomePage = () => {
   // נתוני מוצר לדוגמה
-  const products = [
-    { id: 1, name: "Product 1", price: 20.99, category: "Category 1" },
-    { id: 2, name: "Product 2", price: 30.99, category: "Category 2" },
-    { id: 3, name: "Product 3", price: 25.49, category: "Category 1" },
-  ];
+  const products = useAppSelector((store) => store.products).products;
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -18,7 +17,7 @@ const HomePage = () => {
   // סינון מוצרים
   const filteredProducts = products.filter(
     (product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (selectedCategory === "All" || product.category === selectedCategory)
   );
 
@@ -46,15 +45,26 @@ const HomePage = () => {
           />
           <select value={selectedCategory} onChange={handleCategoryChange}>
             <option value="All">All Categories</option>
-            <option value="Category 1">Category 1</option>
-            <option value="Category 2">Category 2</option>
+            <option value="smartphones">Smartphones</option>
+            <option value="fragrances">Fragrances</option>
+            <option value="home-decoration">Home Decoration</option>
+            <option value="groceries">Groceries</option>
+            <option value="laptops">Laptops</option>
+            <option value="skincare">Skincare</option>
           </select>
         </div>
-        {/* <div className="product-grid">
+        <div className="product-grid">
           {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={0}
+              title={product.title}
+              description={product.description}
+              thumbnail={product.thumbnail}
+              price={product.price}
+              category={product.category}
+            />
           ))}
-        </div> */}
+        </div>
       </div>
     </>
   );

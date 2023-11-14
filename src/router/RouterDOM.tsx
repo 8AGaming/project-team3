@@ -1,15 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import SignInPage from "../pages/SignInPage";
-import SignUpPage from "../pages/SignUpPage";
-import HomePage from "../pages/HomePage";
-import CategoriesPage from "../pages/CategoriesPage";
+import SignInPage from "../users/pages/SignInPage";
+import SignUpPage from "../users/pages/SignUpPage";
+import HomePage from "../products/pages/HomePage";
+import CategoriesPage from "../categories/pages/CategoriesPage";
 const RouterDom = () => {
   return (
     <Routes>
-      <Route path="/signin" element={<SignInPage />} />
-      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/categories" element={<CategoriesPage />} />
+      <Route path="/signin" element={<SignInPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
     </Routes>
   );
 };
