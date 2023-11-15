@@ -7,8 +7,8 @@ import Typography from "@mui/material/Typography";
 import { ProductCardInterface } from "../interfaces/ProductCardInterface";
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { setCart } from "../../cart/cartSlice";
 import { productInCart } from "../../cart/types/productInCart";
+import { addProductToCart, setQuantityPlus } from "../../cart/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 export const ProductCard: FC<ProductCardInterface> = (product) => {
@@ -18,14 +18,13 @@ export const ProductCard: FC<ProductCardInterface> = (product) => {
   const cart = useAppSelector((state) => state.cart.cart);
 
   const hadelAddProductToCart = (newProduct: productInCart) => {
-    const alrdyInCart = cart.find(
+    const alrdyInCart = cart.findIndex(
       (p) => p.product.title === newProduct.product.title
     );
-    if (alrdyInCart) {
-      alrdyInCart.quantity++;
+    if (alrdyInCart !== -1) {
+      dispatch(setQuantityPlus(newProduct.product.title));
     } else {
-      const updateCart = [...cart, newProduct];
-      dispatch(setCart(updateCart));
+      dispatch(addProductToCart(newProduct));
     }
   };
   return (

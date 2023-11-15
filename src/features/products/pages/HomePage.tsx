@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { useAppSelector } from "../../../store/hooks";
 import { GetCategories } from "../../categories/utils/GetCategories";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const HomePage = () => {
   GetCategories();
@@ -26,6 +27,17 @@ const HomePage = () => {
               }}
               onClick={() => {
                 navigate(`/home/categories/${category.category_name}`);
+                const clicks = category.clicks;
+                const updatedData = {
+                  clicks: clicks + 1,
+                };
+                axios
+                  .put(
+                    `http://localhost:3333/api/categories/${category.category_name}`,
+                    updatedData
+                  )
+                  .then((res) => console.log(res.data))
+                  .catch((error) => console.log(error));
               }}
             >
               {category.category_name}

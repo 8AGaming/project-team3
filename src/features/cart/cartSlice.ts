@@ -14,11 +14,34 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setCart: (state, action: PayloadAction<productInCart[]>) => {
-      state.cart = action.payload;
+    setQuantityPlus: (state, action: PayloadAction<string>) => {
+      const productIndex = state.cart.findIndex(
+        (p) => p.product.title === action.payload
+      );
+      state.cart[productIndex].quantity++;
+    },
+    setQuantityMinus: (state, action: PayloadAction<string>) => {
+      const productIndex = state.cart.findIndex(
+        (p) => p.product.title === action.payload
+      );
+      state.cart[productIndex].quantity--;
+    },
+    addProductToCart: (state, action: PayloadAction<productInCart>) => {
+      state.cart.push(action.payload);
+    },
+    deleteProductFromCart: (state, action: PayloadAction<string>) => {
+      const productIndex = state.cart.findIndex(
+        (p) => p.product.title === action.payload
+      );
+      state.cart.splice(productIndex, 1);
     },
   },
 });
 
-export const { setCart } = cartSlice.actions;
+export const {
+  setQuantityPlus,
+  setQuantityMinus,
+  addProductToCart,
+  deleteProductFromCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;

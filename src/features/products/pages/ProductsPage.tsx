@@ -8,14 +8,13 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import { ProductCardInterface } from "../interfaces/ProductCardInterface";
-const HomePage = () => {
-  // נתוני מוצר לדוגמה
+
+const ProductsPage = () => {
   const products = useAppSelector((store) => store.products).products;
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // סינון מוצרים
   const filteredProducts = products.filter(
     (product: { title: string; category: string }) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -64,26 +63,25 @@ const HomePage = () => {
           </FormControl>
         </div>
         <div className="product-grid">
-          {filteredProducts.map(
-            (product: ProductCardInterface) => (
-              <div>{ProductCard(product)} </div>
-            )
-            // <ProductCard
-            //   key={0}
-            //   title={product.title}
-            //   description={product.description}
-            //   thumbnail={product.thumbnail}
-            //   price={product.price}
-            //   category={product.category}
-            //   _id={""}
-            //   rating={0}
-            //   stock={0}
-            //   brand={""}
-            // />
-          )}
+          {filteredProducts.map((product: ProductCardInterface) => (
+            <div key={product._id}>
+              <ProductCard
+                title={product.title}
+                description={product.description}
+                thumbnail={product.thumbnail}
+                price={product.price}
+                category={product.category}
+                _id={product._id}
+                rating={product.rating}
+                stock={product.stock}
+                brand={product.brand}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </>
   );
 };
-export default HomePage;
+
+export default ProductsPage;

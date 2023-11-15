@@ -9,7 +9,7 @@ import HeaderButtons from "./HeaderButtons";
 import Cart from "../../cart/components/Cart";
 import HeaderSignInButton from "./HeaderSignInButton";
 
-const pages = ["Categories", "Products", "Pricing", "Blog"];
+const pages = ["Categories", "Products"];
 
 const Header = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const Header = () => {
                 textDecoration: "none",
               }}
             >
-              Team 3
+              Team 3 Store
             </Typography>
           </Box>
           <Box
