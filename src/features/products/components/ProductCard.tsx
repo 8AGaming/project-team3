@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import { ProductCardInterface } from "../interfaces/ProductCardInterface";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-
 export const ProductCard: FC<ProductCardInterface> = ({
   title,
   description,
@@ -51,9 +50,6 @@ export const ProductCard: FC<ProductCardInterface> = ({
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "space-between" }}>
-<<<<<<< Updated upstream
-        <Button size="small" sx={{ backgroundColor: "#2196F3", color: "#fff" }}>
-=======
         <Button
           onClick={() => {
             navigate(`/home/categories/${category}/${title}`);
@@ -61,7 +57,6 @@ export const ProductCard: FC<ProductCardInterface> = ({
           size="small"
           sx={{ backgroundColor: "#2196F3", color: "#fff" }}
         >
->>>>>>> Stashed changes
           Learn More
         </Button>
         <Button size="small" sx={{ backgroundColor: "#4CAF50", color: "#fff" }}>
