@@ -14,9 +14,19 @@ const RouterDom = () => {
       <Route path="/home-screen" element={<HomeScreen />} />
       <Route path="/signin" element={<SignInPage />} />
       <Route path="/signup" element={<SignUpPage />} />
+<<<<<<< Updated upstream
       <Route path="/categories" element={<CategoriesPage />} />
       <Route path="/categories/:category" element={<CategoryPage />} />
       <Route path="/products" element={<ProductsPage />} />
+=======
+      <Route path="/home/categories" element={<CategoriesPage />} />
+      <Route path="/home/categories/:category" element={<CategoryPage />} />
+      <Route
+        path="/home/categories/:category/:product"
+        element={<ProductDetailsPage />}
+      />
+      <Route path="/home/products" element={<ProductsPage />} />
+>>>>>>> Stashed changes
       {/* <Route path="/product" element={<ProductDetailsPage />} />
       <Route path="/compare" element={<ComparePage />} />
       <Route path="/cart" element={<CartPage />} /> */}
