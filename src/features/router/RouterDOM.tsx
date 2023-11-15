@@ -5,6 +5,7 @@ import HomePage from "../products/pages/HomePage";
 import CategoriesPage from "../categories/pages/CategoriesPage";
 import HomeScreen from "../products/pages/HomeScreen";
 import ProductsPage from "../products/pages/ProductsPage";
+import CategoryPage from "../categories/pages/CategoryPage";
 const RouterDom = () => {
   return (
     <Routes>
@@ -14,6 +15,7 @@ const RouterDom = () => {
       <Route path="/signin" element={<SignInPage />} />
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/categories" element={<CategoriesPage />} />
+      <Route path="/categories/:category" element={<CategoryPage />} />
       <Route path="/products" element={<ProductsPage />} />
       {/* <Route path="/product" element={<ProductDetailsPage />} />
       <Route path="/compare" element={<ComparePage />} />
