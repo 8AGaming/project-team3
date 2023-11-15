@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from "react";
-import Header from "../../layout/Header";
+import Header from "../../layout/Header/Header";
 import { useAppSelector } from "../../../store/hooks";
 import { ProductCard } from "../components/ProductCard";
 import InputLabel from "@mui/material/InputLabel";

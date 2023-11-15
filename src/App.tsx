@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./features/layout/Header";
+import Header from "./features/layout/Header/Header";
 import RouterDOM from "./features/router/RouterDOM";
 import { GetProducts } from "./features/products/utils/GetProducts";
 import Footer from "./features/layout/Footer";
