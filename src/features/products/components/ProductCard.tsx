@@ -13,6 +13,7 @@ export const ProductCard: FC<ProductCardInterface> = ({
   description,
   price,
   thumbnail,
+  category,
 }) => {
   const navigate = useNavigate();
   return (
@@ -50,13 +51,17 @@ export const ProductCard: FC<ProductCardInterface> = ({
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "space-between" }}>
+<<<<<<< Updated upstream
+        <Button size="small" sx={{ backgroundColor: "#2196F3", color: "#fff" }}>
+=======
         <Button
           onClick={() => {
-            navigate(`${title}`);
+            navigate(`/home/categories/${category}/${title}`);
           }}
           size="small"
           sx={{ backgroundColor: "#2196F3", color: "#fff" }}
         >
+>>>>>>> Stashed changes
           Learn More
         </Button>
         <Button size="small" sx={{ backgroundColor: "#4CAF50", color: "#fff" }}>

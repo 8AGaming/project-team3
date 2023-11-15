@@ -25,7 +25,7 @@ const HomePage = () => {
                 alignItems: "center",
               }}
               onClick={() => {
-                navigate(`/categories/${category.category_name}`);
+                navigate(`/home/categories/${category.category_name}`);
               }}
             >
               {category.category_name}
