@@ -6,15 +6,28 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ProductCardInterface } from "../interfaces/ProductCardInterface";
 import { FC } from "react";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { setCart } from "../../cart/cartSlice";
+import { productInCart } from "../../cart/types/productInCart";
 import { useNavigate } from "react-router-dom";
-export const ProductCard: FC<ProductCardInterface> = ({
-  title,
-  description,
-  price,
-  thumbnail,
-  category,
-}) => {
+
+export const ProductCard: FC<ProductCardInterface> = (product) => {
   const navigate = useNavigate();
+  const { title, description, price, thumbnail } = product;
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => state.cart.cart);
+
+  const hadelAddProductToCart = (newProduct: productInCart) => {
+    const alrdyInCart = cart.find(
+      (p) => p.product.title === newProduct.product.title
+    );
+    if (alrdyInCart) {
+      alrdyInCart.quantity++;
+    } else {
+      const updateCart = [...cart, newProduct];
+      dispatch(setCart(updateCart));
+    }
+  };
   return (
     <Card
       sx={{
@@ -52,14 +65,20 @@ export const ProductCard: FC<ProductCardInterface> = ({
       <CardActions sx={{ justifyContent: "space-between" }}>
         <Button
           onClick={() => {
-            navigate(`/home/categories/${category}/${title}`);
+            navigate(`/home/categories/${product.category}/${title}`);
           }}
           size="small"
           sx={{ backgroundColor: "#2196F3", color: "#fff" }}
         >
           Learn More
         </Button>
-        <Button size="small" sx={{ backgroundColor: "#4CAF50", color: "#fff" }}>
+        <Button
+          size="small"
+          sx={{ backgroundColor: "#4CAF50", color: "#fff" }}
+          onClick={() =>
+            hadelAddProductToCart({ product: product, quantity: 1 })
+          }
+        >
           Add To Cart
         </Button>
       </CardActions>

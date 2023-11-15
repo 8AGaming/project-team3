@@ -1,10 +1,13 @@
 import { SwipeableDrawer, Button, Box, Divider, List } from "@mui/material";
 import { useState } from "react";
 import ProductInCart from "./ProductInCart";
-import { productForTesting } from "../../comparison/components/Comparison";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCart";
+import { useAppSelector } from "../../../store/hooks";
 
 const Cart = () => {
   const [open, setOpen] = useState(false);
+  const cart = useAppSelector((state) => state.cart.cart);
+
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (event.type === "keydown") return;
@@ -12,8 +15,10 @@ const Cart = () => {
     };
 
   return (
-    <div>
-      <Button onClick={toggleDrawer(true)}>Open Cart</Button>
+    <Box>
+      <Box component={Button} onClick={toggleDrawer(true)} variant="outlined">
+        <ShoppingCartOutlinedIcon sx={{ color: "white" }} />
+      </Box>
 
       <SwipeableDrawer
         open={open}
@@ -21,19 +26,23 @@ const Cart = () => {
         onOpen={toggleDrawer(true)}
       >
         <Box sx={{ width: 260 }} role="presentation">
-          <List>
-            <ProductInCart product={productForTesting} />
-          </List>
-          <Divider />
-          <List>
-            <ProductInCart product={productForTesting} />
-          </List>
+          {cart.map((productOnCart) => (
+            <>
+              <List>
+                <ProductInCart
+                  product={productOnCart.product}
+                  quantity={productOnCart.quantity}
+                />
+              </List>
+              <Divider />
+            </>
+          ))}
         </Box>
         <Button fullWidth variant="contained" sx={{ mb: 1 }}>
           Checkout
         </Button>
       </SwipeableDrawer>
-    </div>
+    </Box>
   );
 };
 

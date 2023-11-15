@@ -6,6 +6,8 @@ import { Typography, Box } from "@mui/material";
 import { HeaderNav } from "./HeaderNav";
 import { useNavigate } from "react-router-dom";
 import HeaderButtons from "./HeaderButtons";
+import Cart from "../../cart/components/Cart";
+import HeaderSignInButton from "./HeaderSignInButton";
 
 const pages = ["Categories", "Products", "Pricing", "Blog"];
 
@@ -15,33 +17,37 @@ const Header = () => {
   return (
     <AppBar position="fixed" sx={{ width: "100%" }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon
-            sx={{
-              display: { xs: "none", md: "flex" },
-              mr: 1,
-            }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            onClick={() => {
-              navigate("/home");
-            }}
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Team 3
-          </Typography>
-
+        <Toolbar
+          disableGutters
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <Box sx={{ display: "flex" }}>
+            <AdbIcon
+              sx={{
+                display: { xs: "none", md: "flex" },
+                mr: 1,
+              }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              onClick={() => {
+                navigate("/home");
+              }}
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              Team 3
+            </Typography>
+          </Box>
           <Box
             sx={{
               flexGrow: 1,
@@ -52,6 +58,10 @@ const Header = () => {
           </Box>
 
           <HeaderButtons pages={pages} />
+          <Box sx={{ marginLeft: "auto", display: "flex" }}>
+            <HeaderSignInButton />
+            <Cart />
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
