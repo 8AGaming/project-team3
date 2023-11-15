@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import React from "react";
 const ProductDetails = () => {
   const [quantity, setQuantity] = React.useState(1);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleQuantityChange = (event: {
     target: { value: React.SetStateAction<number> };
   }) => {
