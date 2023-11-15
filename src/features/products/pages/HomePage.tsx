@@ -1,43 +1,39 @@
-import { Box, Typography } from "@mui/material";
-import { GetCategories } from "../../categories/utils/GetCategories";
+import { Box } from "@mui/material";
 import { useAppSelector } from "../../../store/hooks";
-import { GetProducts } from "../utils/GetProducts";
-import { ProductCard } from "../components/ProductCard";
+import { GetCategories } from "../../categories/utils/GetCategories";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   GetCategories();
-  GetProducts();
-
   const categories = useAppSelector((store) => store.categories).categories;
-  const products = useAppSelector((store) => store.products).products;
+  const navigate = useNavigate();
 
   return (
-    <Box sx={{ marginTop: "80px" }}>
+    <Box sx={{ display: "flex", margin: "100px", flexWrap: "wrap" }}>
       {categories.map((category, i) => {
-        const sortedProducts = products.filter(
-          (product) => product.category === category.category_name
-        );
-
         return (
           <>
-            <Typography
-              variant="h2"
+            <Box
+              key={i}
               sx={{
-                display: "flex",
-                justifyContent: "space-around",
+                width: "200px",
+                height: "200px",
+                border: "inset",
                 margin: "5px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              onClick={() => {
+                navigate(`/categories/${category.category_name}`);
               }}
             >
               {category.category_name}
-            </Typography>
-            <div key={i} style={{ display: "flex" }}>
-              {sortedProducts.map((product) => ProductCard(product))}
-            </div>
+            </Box>
           </>
         );
       })}
     </Box>
   );
 };
-
 export default HomePage;
