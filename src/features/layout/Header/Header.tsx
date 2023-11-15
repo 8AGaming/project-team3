@@ -1,4 +1,3 @@
-
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,10 +13,15 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <AppBar position="fixed" style={{ width: "100%" }}>
+    <AppBar position="fixed" sx={{ width: "100%" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <AdbIcon
+            sx={{
+              display: { xs: "none", md: "flex" },
+              mr: 1,
+            }}
+          />
           <Typography
             variant="h6"
             noWrap
@@ -38,7 +42,12 @@ const Header = () => {
             Team 3
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+            }}
+          >
             <HeaderNav pages={pages} />
           </Box>
 
