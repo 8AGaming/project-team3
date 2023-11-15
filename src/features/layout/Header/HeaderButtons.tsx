@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import HeaderSignInButton from "./HeaderSignInButton";
 
@@ -11,7 +11,7 @@ const HeaderButtons: React.FC<HeaderButtonsProps> = ({ pages }) => {
   const navigate = useNavigate();
 
   return (
-    <Box
+    <Typography
       sx={{
         display: "flex",
         alignItems: "center",
@@ -35,7 +35,7 @@ const HeaderButtons: React.FC<HeaderButtonsProps> = ({ pages }) => {
       <Box sx={{ marginLeft: "auto" }}>
         <HeaderSignInButton />
       </Box>
-    </Box>
+    </Typography>
   );
 };
 

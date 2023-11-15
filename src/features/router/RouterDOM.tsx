@@ -6,6 +6,7 @@ import CategoriesPage from "../categories/pages/CategoriesPage";
 import HomeScreen from "../products/pages/HomeScreen";
 import ProductsPage from "../products/pages/ProductsPage";
 import CategoryPage from "../categories/pages/CategoryPage";
+import ProductDetailsPage from "../products/pages/ProductDetailsPage";
 const RouterDom = () => {
   return (
     <Routes>
@@ -16,6 +17,10 @@ const RouterDom = () => {
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/categories" element={<CategoriesPage />} />
       <Route path="/categories/:category" element={<CategoryPage />} />
+      <Route
+        path="/categories/:category/:product"
+        element={<ProductDetailsPage />}
+      />
       <Route path="/products" element={<ProductsPage />} />
       {/* <Route path="/product" element={<ProductDetailsPage />} />
       <Route path="/compare" element={<ComparePage />} />

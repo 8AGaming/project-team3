@@ -6,41 +6,35 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import OrderOptions from "./OrderOptions";
 import QuantitySelector from "./QuantitySelector";
-
 interface ProductCardProps {
   title: string;
   description: string;
   price: number;
   thumbnail: string;
 }
-
-const ProductCard: React.FC<ProductCardProps> = ({
+const ProductDetailsCard: React.FC<ProductCardProps> = ({
   title,
   description,
   price,
   thumbnail,
 }) => {
   const [quantity, setQuantity] = React.useState(1);
-
   const handleQuantityChange = (
     event: React.ChangeEvent<{ value: unknown }>
   ) => {
     setQuantity(event.target.value as number);
   };
-
   const handleAddToBasketClick = () => {
     console.log(`Added ${quantity} item(s) to the basket`);
   };
-
   const handlePriceComparisonClick = () => {
     console.log(`Clicked on price comparison`);
   };
-
   return (
     <Card
       sx={{
         maxWidth: 500,
-        margin: "16px",
+        margin: "100px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       }}
     >
@@ -81,7 +75,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           sx={{
             width: "100%",
             marginTop: 2,
-            backgroundColor: "#cae942",
+            backgroundColor: "#CAE942",
             color: "#fff",
           }}
         >
@@ -91,5 +85,4 @@ const ProductCard: React.FC<ProductCardProps> = ({
     </Card>
   );
 };
-
-export default ProductCard;
+export default ProductDetailsCard;

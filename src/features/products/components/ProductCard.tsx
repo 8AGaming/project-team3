@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ProductCardInterface } from "../interfaces/ProductCardInterface";
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const ProductCard: FC<ProductCardInterface> = ({
   title,
@@ -13,6 +14,7 @@ export const ProductCard: FC<ProductCardInterface> = ({
   price,
   thumbnail,
 }) => {
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -48,7 +50,13 @@ export const ProductCard: FC<ProductCardInterface> = ({
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "space-between" }}>
-        <Button size="small" sx={{ backgroundColor: "#2196F3", color: "#fff" }}>
+        <Button
+          onClick={() => {
+            navigate(`${title}`);
+          }}
+          size="small"
+          sx={{ backgroundColor: "#2196F3", color: "#fff" }}
+        >
           Learn More
         </Button>
         <Button size="small" sx={{ backgroundColor: "#4CAF50", color: "#fff" }}>
