@@ -3,46 +3,47 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { PropProducts } from "../comparison/component/ComparisableProductInfo";
 import { Box, Fab, Grid } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
+import { productInCart } from "../types/productInCart";
 
-const ProductInCart = ({ product }: PropProducts) => {
-  const [quantity, setQuantity] = useState(1);
+const ProductInCart = (productOnCart: productInCart) => {
+  const [quantityState, setQuantity] = useState(productOnCart.quantity);
 
   const handelQuantity = (type: string) => {
     if (type === "-") {
-      if (quantity > 1) {
-        setQuantity(quantity - 1);
+      if (quantityState > 1) {
+        setQuantity(quantityState - 1);
       } else {
-        setQuantity(quantity);
+        setQuantity(quantityState);
       }
     } else if (type === "+") {
-      setQuantity(quantity + 1);
+      setQuantity(quantityState + 1);
     }
   };
   return (
     <Card sx={{ width: 250, margin: 1 }}>
       <CardMedia
         sx={{ height: 140, maxWidth: 250 }}
-        image={product.images[0]}
-        title={product.title}
+        image={productOnCart.product.images[0]}
+        title={productOnCart.product.title}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {product.title}
+          {productOnCart.product.title}
         </Typography>
         <Grid>
-          {product.discountPercentage && product.discountPercentage > 0 ? (
+          {productOnCart.product.discountPercentage &&
+          productOnCart.product.discountPercentage > 0 ? (
             <>
               <Typography variant="body1" sx={{ display: "inline", margin: 1 }}>
                 {parseFloat(
                   (
-                    ((100 - product.discountPercentage) / 100) *
-                    product.price
+                    ((100 - productOnCart.product.discountPercentage) / 100) *
+                    productOnCart.product.price
                   ).toFixed(1)
                 )}
                 $
@@ -53,18 +54,18 @@ const ProductInCart = ({ product }: PropProducts) => {
                 color="text.secondary"
                 sx={{ textDecoration: "line-through", display: "inline" }}
               >
-                {product.price}$
+                {productOnCart.product.price}$
               </Typography>
             </>
           ) : (
             <Typography variant="body1" sx={{ display: "inline" }}>
-              {product.price}$
+              {productOnCart.product.price}$
             </Typography>
           )}
         </Grid>
         <Grid>
           <Typography variant="body2" color="text.secondary">
-            quantity {quantity}
+            quantity {quantityState}
           </Typography>
         </Grid>
       </CardContent>
@@ -76,7 +77,7 @@ const ProductInCart = ({ product }: PropProducts) => {
           <Fab
             size="small"
             color="inherit"
-            disabled={quantity === 1 ? true : false}
+            disabled={quantityState === 1 ? true : false}
             onClick={() => handelQuantity("-")}
           >
             <RemoveIcon />
