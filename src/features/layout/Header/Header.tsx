@@ -60,6 +60,7 @@ const Header = () => {
           <HeaderButtons pages={pages} />
           <Box sx={{ marginLeft: "auto", display: "flex" }}>
             <HeaderSignInButton />
+
             <Cart />
           </Box>
         </Toolbar>

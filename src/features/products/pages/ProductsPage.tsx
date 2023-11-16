@@ -8,6 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import { ProductCardInterface } from "../interfaces/ProductCardInterface";
+import { Box } from "@mui/material";
 
 const ProductsPage = () => {
   const products = useAppSelector((store) => store.products).products;
@@ -34,12 +35,12 @@ const ProductsPage = () => {
   return (
     <>
       <Header />
-      <div className="container" style={{ padding: "20px" }}>
+      <Box className="container" style={{ padding: "20px" }}>
         <h2 style={{ textAlign: "center", marginBottom: "30px" }}>
           Welcome to Our Online Store
         </h2>
 
-        <div className="filter-section">
+        <Box className="filter-section">
           <TextField
             label="Search products..."
             variant="outlined"
@@ -61,10 +62,10 @@ const ProductsPage = () => {
               <MenuItem value={"skincare"}>Skincare</MenuItem>
             </Select>
           </FormControl>
-        </div>
-        <div className="product-grid">
+        </Box>
+        <Box className="product-grid">
           {filteredProducts.map((product: ProductCardInterface) => (
-            <div key={product._id}>
+            <Box key={product._id}>
               <ProductCard
                 title={product.title}
                 description={product.description}
@@ -76,10 +77,10 @@ const ProductsPage = () => {
                 stock={product.stock}
                 brand={product.brand}
               />
-            </div>
+            </Box>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </>
   );
 };

@@ -27,7 +27,7 @@ const ProductDetailsCard: React.FC<ProductCardProps> = (product) => {
   ) => {
     setQuantity(event.target.value as number);
   };
-  const handleAddToBasketClick = (newProduct: productInCart) => {
+  const handleAddToCartClick = (newProduct: productInCart) => {
     const alreadyInCart = cart.findIndex(
       (p) => p.product.title === newProduct.product.title
     );
@@ -71,7 +71,10 @@ const ProductDetailsCard: React.FC<ProductCardProps> = (product) => {
           variant="contained"
           onClick={() => {
             if (currentProduct)
-              handleAddToBasketClick({ product: currentProduct, quantity: 1 });
+              handleAddToCartClick({
+                product: currentProduct,
+                quantity: quantity,
+              });
           }}
           sx={{
             width: "100%",
@@ -80,7 +83,7 @@ const ProductDetailsCard: React.FC<ProductCardProps> = (product) => {
             color: "#fff",
           }}
         >
-          Add to Basket
+          Add to Cart
         </Button>
         <Button
           variant="contained"

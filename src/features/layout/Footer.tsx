@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   const [currentTime, setCurrentTime] = useState(getFormattedTime());
 
   useEffect(() => {
@@ -28,9 +31,10 @@ const Footer = () => {
         backgroundColor: "#3f51b5",
         color: "white",
         padding: "10px 0",
-        position: "fixed",
+        // position: "fixed",
         bottom: 0,
         width: "100%",
+        borderRadius: "3px",
       }}
     >
       <Container maxWidth="md">
@@ -38,6 +42,14 @@ const Footer = () => {
           © {new Date().getFullYear()} Team 3 | Local Time: {currentTime}
         </Typography>
       </Container>
+      <Button
+        variant="contained"
+        onClick={() => {
+          navigate("/home/store/map");
+        }}
+      >
+        Location
+      </Button>
     </Box>
   );
 };

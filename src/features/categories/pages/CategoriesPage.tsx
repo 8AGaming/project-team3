@@ -38,7 +38,20 @@ const CategoriesPage = () => {
               {category.category_name}
             </Typography>
             <Box key={i} sx={{ display: "flex", flexWrap: "wrap" }}>
-              {sortedProducts.map((product) => ProductCard(product))}
+              {sortedProducts.map((product, j) => (
+                <ProductCard
+                  key={j}
+                  title={product.title}
+                  description={product.description}
+                  thumbnail={product.thumbnail}
+                  price={product.price}
+                  category={product.category}
+                  _id={product._id}
+                  rating={product.rating}
+                  stock={product.stock}
+                  brand={product.brand}
+                />
+              ))}
             </Box>
           </Box>
         );

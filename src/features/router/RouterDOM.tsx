@@ -6,6 +6,7 @@ import CategoriesPage from "../categories/pages/CategoriesPage";
 import ProductsPage from "../products/pages/ProductsPage";
 import CategoryPage from "../categories/pages/CategoryPage";
 import ProductDetailsPage from "../products/pages/ProductDetailsPage";
+import StorePage from "../layout/ol/StorePage";
 const RouterDom = () => {
   return (
     <Routes>
@@ -20,6 +21,7 @@ const RouterDom = () => {
         element={<ProductDetailsPage />}
       />
       <Route path="/home/products" element={<ProductsPage />} />
+      <Route path="/home/store/map" element={<StorePage />} />
       {/* <Route path="/product" element={<ProductDetailsPage />} />
       <Route path="/compare" element={<ComparePage />} />
       <Route path="/cart" element={<CartPage />} /> */}
