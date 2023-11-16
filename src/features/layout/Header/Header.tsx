@@ -9,7 +9,7 @@ import HeaderButtons from "./HeaderButtons";
 import Cart from "../../cart/components/Cart";
 import HeaderSignInButton from "./HeaderSignInButton";
 
-const pages = ["Categories", "Products"];
+const pages = ["Home", "Categories", "Products"];
 
 const Header = () => {
   const navigate = useNavigate();
