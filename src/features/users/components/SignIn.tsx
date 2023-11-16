@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FieldValues, useForm } from "react-hook-form";
 import {
   emailValidet,
@@ -15,7 +14,6 @@ import {
 } from "../../products/helpers/validation";
 import { Copyright } from "../../layout/Copyright";
 import SignInUpButton from "./SignInUpButton";
-const defaultTheme = createTheme();
 export const SignIn = () => {
   const {
     register,
@@ -31,63 +29,61 @@ export const SignIn = () => {
     });
   };
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
         <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+          component="form"
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          sx={{ mt: 1 }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              autoComplete="email"
-              autoFocus
-              {...register("email", emailValidet)}
-              helperText={errors.email?.message?.toString()}
-              error={errors.email ? true : false}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              {...register("password", passwordValidet)}
-              helperText={errors.password?.message?.toString()}
-              error={errors.password ? true : false}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <SignInUpButton text="Sign In" isValid={isValid}></SignInUpButton>
-            {/* <SignInUpLink text="signup" /> */}
-          </Box>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            autoComplete="email"
+            autoFocus
+            {...register("email", emailValidet)}
+            helperText={errors.email?.message?.toString()}
+            error={errors.email ? true : false}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            {...register("password", passwordValidet)}
+            helperText={errors.password?.message?.toString()}
+            error={errors.password ? true : false}
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <SignInUpButton text="Sign In" isValid={isValid}></SignInUpButton>
+          {/* <SignInUpLink text="signup" /> */}
         </Box>
-        <Copyright />
-      </Container>
-    </ThemeProvider>
+      </Box>
+      <Copyright />
+    </Container>
   );
 };

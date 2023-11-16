@@ -5,14 +5,25 @@ import { GetProducts } from "./features/products/utils/GetProducts";
 import Footer from "./features/layout/Footer";
 import { GetCategories } from "./features/categories/utils/GetCategories";
 
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
+
+const themeDark = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
 const App = () => {
   GetProducts();
   GetCategories();
   return (
     <>
-      <Header />
-      <RouterDOM />
-      <Footer />
+      <ThemeProvider theme={themeDark}>
+        <Header />
+        <RouterDOM />
+        <Footer />
+      </ThemeProvider>
     </>
   );
 };

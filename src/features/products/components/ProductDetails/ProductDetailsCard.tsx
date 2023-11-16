@@ -43,7 +43,8 @@ const ProductDetailsCard: React.FC<ProductCardProps> = (product) => {
   return (
     <Card
       sx={{
-        maxWidth: 500,
+        minWidth: "600px",
+        maxWidth: "600px",
         margin: "100px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       }}
@@ -51,7 +52,7 @@ const ProductDetailsCard: React.FC<ProductCardProps> = (product) => {
       <CardMedia
         component="img"
         alt={title}
-        height="140"
+        height="300px"
         image={thumbnail}
         sx={{ objectFit: "cover" }}
       />
