@@ -3,7 +3,6 @@ import SignInPage from "../users/pages/SignInPage";
 import SignUpPage from "../users/pages/SignUpPage";
 import HomePage from "../products/pages/HomePage";
 import CategoriesPage from "../categories/pages/CategoriesPage";
-import HomeScreen from "../products/pages/HomeScreen";
 import ProductsPage from "../products/pages/ProductsPage";
 import CategoryPage from "../categories/pages/CategoryPage";
 import ProductDetailsPage from "../products/pages/ProductDetailsPage";
@@ -12,7 +11,6 @@ const RouterDom = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/home" element={<HomePage />} />
-      <Route path="/home-screen" element={<HomeScreen />} />
       <Route path="/signin" element={<SignInPage />} />
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/home/categories" element={<CategoriesPage />} />

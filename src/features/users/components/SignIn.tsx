@@ -15,7 +15,6 @@ import {
 } from "../../products/helpers/validation";
 import { Copyright } from "../../layout/Copyright";
 import SignInUpButton from "./SignInUpButton";
-import SignInUpLink from "./SignInUpLink";
 const defaultTheme = createTheme();
 export const SignIn = () => {
   const {
@@ -23,7 +22,6 @@ export const SignIn = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
-
   const onSubmit = (event: FieldValues) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -85,7 +83,7 @@ export const SignIn = () => {
               label="Remember me"
             />
             <SignInUpButton text="Sign In" isValid={isValid}></SignInUpButton>
-            <SignInUpLink text="signup" />
+            {/* <SignInUpLink text="signup" /> */}
           </Box>
         </Box>
         <Copyright />

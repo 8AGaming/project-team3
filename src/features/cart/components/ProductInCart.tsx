@@ -56,7 +56,8 @@ const ProductInCart = ({ productCart }: PropProductInCart) => {
         </Grid>
         <Grid>
           <Typography variant="body2" color="text.secondary">
-            quantity {cart[productIndexInCart].quantity}
+            quantity{" "}
+            {cart[productIndexInCart] && cart[productIndexInCart].quantity}
           </Typography>
         </Grid>
       </CardContent>

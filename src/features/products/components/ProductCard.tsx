@@ -17,11 +17,11 @@ export const ProductCard: FC<ProductCardInterface> = (product) => {
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart.cart);
 
-  const hadelAddProductToCart = (newProduct: productInCart) => {
-    const alrdyInCart = cart.findIndex(
+  const handleAddProductToCart = (newProduct: productInCart) => {
+    const alreadyInCart = cart.findIndex(
       (p) => p.product.title === newProduct.product.title
     );
-    if (alrdyInCart !== -1) {
+    if (alreadyInCart !== -1) {
       dispatch(setQuantityPlus(newProduct.product.title));
     } else {
       dispatch(addProductToCart(newProduct));
@@ -31,6 +31,7 @@ export const ProductCard: FC<ProductCardInterface> = (product) => {
     <Card
       sx={{
         maxWidth: 345,
+        minHeight: 345,
         margin: "16px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         transition: "transform 0.3s ease-in-out", // Add a smooth transition for the transform property
@@ -75,7 +76,7 @@ export const ProductCard: FC<ProductCardInterface> = (product) => {
           size="small"
           sx={{ backgroundColor: "#4CAF50", color: "#fff" }}
           onClick={() =>
-            hadelAddProductToCart({ product: product, quantity: 1 })
+            handleAddProductToCart({ product: product, quantity: 1 })
           }
         >
           Add To Cart

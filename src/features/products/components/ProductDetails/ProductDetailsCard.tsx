@@ -6,26 +6,36 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import OrderOptions from "./OrderOptions";
 import QuantitySelector from "./QuantitySelector";
+import { productInCart } from "../../../cart/types/productInCart";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { addProductToCart, setQuantityPlus } from "../../../cart/cartSlice";
 interface ProductCardProps {
   title: string;
   description: string;
   price: number;
   thumbnail: string;
 }
-const ProductDetailsCard: React.FC<ProductCardProps> = ({
-  title,
-  description,
-  price,
-  thumbnail,
-}) => {
+const ProductDetailsCard: React.FC<ProductCardProps> = (product) => {
+  const { title, description, price, thumbnail } = product;
+  const products = useAppSelector((store) => store.products).products;
+  const currentProduct = products.find((p) => p.title === title);
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => state.cart.cart);
   const [quantity, setQuantity] = React.useState(1);
   const handleQuantityChange = (
     event: React.ChangeEvent<{ value: unknown }>
   ) => {
     setQuantity(event.target.value as number);
   };
-  const handleAddToBasketClick = () => {
-    console.log(`Added ${quantity} item(s) to the basket`);
+  const handleAddToBasketClick = (newProduct: productInCart) => {
+    const alreadyInCart = cart.findIndex(
+      (p) => p.product.title === newProduct.product.title
+    );
+    if (alreadyInCart !== -1) {
+      dispatch(setQuantityPlus(newProduct.product.title));
+    } else {
+      dispatch(addProductToCart(newProduct));
+    }
   };
   const handlePriceComparisonClick = () => {
     console.log(`Clicked on price comparison`);
@@ -59,7 +69,10 @@ const ProductDetailsCard: React.FC<ProductCardProps> = ({
         <QuantitySelector value={quantity} onChange={handleQuantityChange} />
         <Button
           variant="contained"
-          onClick={handleAddToBasketClick}
+          onClick={() => {
+            if (currentProduct)
+              handleAddToBasketClick({ product: currentProduct, quantity: 1 });
+          }}
           sx={{
             width: "100%",
             marginTop: 2,

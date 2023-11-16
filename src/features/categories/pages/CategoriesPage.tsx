@@ -19,7 +19,14 @@ const CategoriesPage = () => {
         );
 
         return (
-          <>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
             <Typography
               variant="h2"
               sx={{
@@ -30,10 +37,10 @@ const CategoriesPage = () => {
             >
               {category.category_name}
             </Typography>
-            <div key={i} style={{ display: "flex" }}>
+            <Box key={i} sx={{ display: "flex", flexWrap: "wrap" }}>
               {sortedProducts.map((product) => ProductCard(product))}
-            </div>
-          </>
+            </Box>
+          </Box>
         );
       })}
     </Box>
