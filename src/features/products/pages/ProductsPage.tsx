@@ -8,7 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import { ProductCardInterface } from "../interfaces/ProductCardInterface";
-import { Box } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 
 const ProductsPage = () => {
   const products = useAppSelector((store) => store.products).products;
@@ -34,6 +34,7 @@ const ProductsPage = () => {
 
   return (
     <>
+      <CssBaseline />
       <Header />
       <Box className="container" style={{ padding: "20px" }}>
         <h2 style={{ textAlign: "center", marginBottom: "30px" }}>

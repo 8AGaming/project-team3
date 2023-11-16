@@ -30,9 +30,11 @@ export const ProductCard: FC<ProductCardInterface> = (product) => {
   return (
     <Card
       sx={{
-        maxWidth: 345,
-        minHeight: 345,
-        margin: "16px",
+        maxWidth: "600px",
+        minWidth: "600px",
+        margin: "20px",
+        borderRadius: "8px",
+        backgroundColor: "#0f0d14",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         transition: "transform 0.3s ease-in-out", // Add a smooth transition for the transform property
         ":hover": {
@@ -43,7 +45,7 @@ export const ProductCard: FC<ProductCardInterface> = (product) => {
       <CardMedia
         component="img"
         alt="Apple iPhone 11"
-        height="140"
+        height="300px"
         image={thumbnail}
         sx={{ objectFit: "cover" }}
       />
@@ -62,7 +64,7 @@ export const ProductCard: FC<ProductCardInterface> = (product) => {
           {description}
         </Typography>
       </CardContent>
-      <CardActions sx={{ justifyContent: "space-between" }}>
+      <CardActions sx={{ justifyContent: "space-evenly" }}>
         <Button
           onClick={() => {
             navigate(`/home/categories/${product.category}/${title}`);
