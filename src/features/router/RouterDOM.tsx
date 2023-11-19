@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import SignInPage from "../users/pages/SignInPage";
 import SignUpPage from "../users/pages/SignUpPage";
-import HomePage from "../products/pages/HomePage";
+import HomePage from "../home/pages/HomePage";
 import CategoriesPage from "../categories/pages/CategoriesPage";
 import ProductsPage from "../products/pages/ProductsPage";
 import CategoryPage from "../categories/pages/CategoryPage";
 import ProductDetailsPage from "../products/pages/ProductDetailsPage";
-import StorePage from "../layout/ol/StorePage";
+import StorePage from "../maps/pages/StorePage";
 import NotFoundPage from "../layout/NotFoundPage/NotFoundPage";
 const RouterDom = () => {
   return (

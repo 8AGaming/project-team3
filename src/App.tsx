@@ -7,6 +7,7 @@ import { GetCategories } from "./features/categories/utils/GetCategories";
 import { ThemeProvider } from "@mui/material/styles";
 import { useAppSelector } from "./store/hooks";
 import { themeDark, themeLight } from "./features/themes/themes";
+import { CssBaseline } from "@mui/material";
 
 const App = () => {
   const themeMode = useAppSelector((store) => store.themeMode.themeMode);
@@ -15,6 +16,7 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={themeMode ? themeLight : themeDark}>
+        <CssBaseline />
         <Header />
         <RouterDOM />
         <Footer />

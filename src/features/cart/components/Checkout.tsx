@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { useState } from "react";
-import DeliveryFrom from "../../Deliveryform/component/DeliveryFrom";
+import DeliveryFrom from "../../Deliveryform/components/DeliveryFrom";
 
 const Checkout = () => {
   const [open, setOpen] = useState(false);
