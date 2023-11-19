@@ -10,7 +10,7 @@ export const GetCategories = () => {
 
   useEffect(() => {
     axios.axiosVar
-      .get("http://localhost:3333/api/categories")
+      .get("https://project-team3-server.onrender.com/api/categories")
       .then((res) => dispatch(setCategories(res.data)))
       .catch((error) => console.log(error));
   }, []);

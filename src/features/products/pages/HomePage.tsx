@@ -50,7 +50,6 @@ const HomePage = () => {
                     borderRadius: "5%",
                     backgroundImage: `url(${category.image})`,
                     backgroundSize: "cover",
-                    // background: "rgba(0, 0, 0, 0.6)",
                     margin: "10px",
                     display: "flex",
                     justifyContent: "center",
