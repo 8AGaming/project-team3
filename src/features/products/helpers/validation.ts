@@ -19,4 +19,45 @@ export const nameValidet = {
     value: 2,
     message: "⚠ Must be at least two characters",
   },
+  pattern: {
+    value: /^[A-Za-z]+$/,
+    message: "⚠ Please enter correct values",
+  },
+};
+
+export const middelName = {
+  minLength: {
+    value: 2,
+    message: "⚠ Must be at least two characters",
+  },
+  pattern: {
+    value: /^[A-Za-z]+$/,
+    message: "⚠ Please enter correct values",
+  },
+};
+
+export const phoneValidet = {
+  required: "⚠ Required field",
+  pattern: {
+    value: /^\d{7}$/,
+    message: "⚠ Invalid Phone Number",
+  },
+};
+export const requiredValidet = {
+  required: "⚠ Required field",
+};
+export const houseValidet = {
+  required: "⚠ Required field",
+  pattern: {
+    value: /^[0-9]+$/,
+    message: "⚠ Invalid House Number",
+  },
+};
+
+export const idValidet = {
+  required: "⚠ Required field",
+  pattern: {
+    value: /^\w{5,10}$/,
+    message: "⚠ Invalid Personal ID",
+  },
 };

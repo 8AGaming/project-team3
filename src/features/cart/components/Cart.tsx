@@ -11,11 +11,9 @@ import React, { useEffect, useState } from "react";
 import ProductInCart from "./ProductInCart";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCart";
 import { useAppSelector } from "../../../store/hooks";
-import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { productInCart } from "../types/productInCart";
-import { useNavigate } from "react-router-dom";
+import Checkout from "./Checkout";
 const Cart = () => {
-  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [localStorageCart, setLocalStorageCart] = useState([]);
   const cart = useAppSelector((state) => state.cart.cart);
@@ -88,16 +86,7 @@ const Cart = () => {
                 </React.Fragment>
               ))}
             </Box>
-            <Button
-              onClick={() => {
-                navigate("/24785trgfbhdncb");
-              }}
-              fullWidth
-              variant="contained"
-              sx={{ mb: 1 }}
-            >
-              <ShoppingCartCheckoutIcon sx={{ mr: 1 }} /> Checkout
-            </Button>
+            <Checkout />
           </>
         )}
       </SwipeableDrawer>
