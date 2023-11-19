@@ -4,6 +4,7 @@ import productsSlice from "../features/products/productsSlice";
 import categoriesSlice from "../features/categories/categoriesSlice";
 import usersSlice from "../features/users/usersSlice";
 import cartSlice from "../features/cart/cartSlice";
+import themeModeSlice from "../features/themes/themeModeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     categories: categoriesSlice,
     users: usersSlice,
     cart: cartSlice,
+    themeMode: themeModeSlice,
   },
 });
 

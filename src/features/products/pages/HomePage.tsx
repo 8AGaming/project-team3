@@ -3,12 +3,11 @@ import { useAppSelector } from "../../../store/hooks";
 import { GetCategories } from "../../categories/utils/GetCategories";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 const HomePage = () => {
   GetCategories();
   const categories = useAppSelector((store) => store.categories).categories;
   const navigate = useNavigate();
-
+  const themeMode = useAppSelector((store) => store.themeMode.themeMode);
   return (
     <>
       <Container>
@@ -34,11 +33,17 @@ const HomePage = () => {
         >
           {categories.map((category, i) => {
             return (
-              <>
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography
+                  variant="h5"
+                  sx={{ color: themeMode ? "black" : "yellow" }}
+                >
+                  {category.category_name}
+                </Typography>
                 <Box
                   key={i}
                   sx={{
-                    opacity: 0.5,
+                    opacity: 0.7,
                     width: "200px",
                     height: "200px",
                     border: "none",
@@ -72,12 +77,8 @@ const HomePage = () => {
                       .then((res) => console.log(res.data))
                       .catch((error) => console.log(error));
                   }}
-                >
-                  <Typography sx={{ opacity: 1 }}>
-                    {category.category_name}
-                  </Typography>
-                </Box>
-              </>
+                ></Box>
+              </Box>
             );
           })}
         </Box>

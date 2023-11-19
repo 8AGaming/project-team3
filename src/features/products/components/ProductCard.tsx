@@ -34,7 +34,7 @@ export const ProductCard: FC<ProductCardInterface> = (product) => {
         minWidth: "600px",
         margin: "20px",
         borderRadius: "8px",
-        backgroundColor: "#0f0d14",
+        // backgroundColor: "#0f0d14",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         transition: "transform 0.3s ease-in-out", // Add a smooth transition for the transform property
         ":hover": {
