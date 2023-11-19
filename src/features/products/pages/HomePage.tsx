@@ -3,6 +3,7 @@ import { useAppSelector } from "../../../store/hooks";
 import { GetCategories } from "../../categories/utils/GetCategories";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Top5Categories from "../../categories/components/Top5Categories";
 const HomePage = () => {
   GetCategories();
   const categories = useAppSelector((store) => store.categories).categories;
@@ -16,10 +17,13 @@ const HomePage = () => {
           variant="h3"
           sx={{
             marginTop: "60px",
+            marginBottom: "10px",
           }}
         >
           TEAM 3 STORE
         </Typography>
+        <Top5Categories />
+        <Typography variant="h4">All Categories</Typography>
         <Box
           sx={{
             display: "flex",
@@ -33,7 +37,7 @@ const HomePage = () => {
         >
           {categories.map((category, i) => {
             return (
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Box key={i} sx={{ display: "flex", flexDirection: "column" }}>
                 <Typography
                   variant="h5"
                   sx={{ color: themeMode ? "black" : "yellow" }}
