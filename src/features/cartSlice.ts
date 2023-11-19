@@ -40,6 +40,9 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.cart = [];
     },
+    setAlert: (state) => {
+      state.successAalert = true;
+    },
   },
 });
 
@@ -49,5 +52,6 @@ export const {
   addProductToCart,
   deleteProductFromCart,
   clearCart,
+  setAlert,
 } = cartSlice.actions;
 export default cartSlice.reducer;
