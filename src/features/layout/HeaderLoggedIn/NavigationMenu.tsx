@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 
 interface NavigationMenuProps {
+  anchorElNav: HTMLElement | null;
+  handleCloseNavMenu: (event: React.MouseEvent<HTMLElement>) => void;
   handleOpenNavMenu: (event: React.MouseEvent<HTMLElement>) => void;
 }
 

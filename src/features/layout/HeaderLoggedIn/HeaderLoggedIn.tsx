@@ -35,6 +35,7 @@ const HeaderLoggedIn = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <HeaderLogo />
+
           <NavigationMenu
             anchorElNav={anchorElNav}
             handleCloseNavMenu={handleCloseNavMenu}
